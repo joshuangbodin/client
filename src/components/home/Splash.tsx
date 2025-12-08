@@ -3,10 +3,10 @@ import FadeUp from "../FadeUp";
 
 export default function Splash() {
   return (
-    <div className="px-6 md:px-14 lg:px-20  flex flex-col justify-center items-center gap-7  relative h-[75dvh] max-h-[90vh] md:h-dvh">
+    <div className="px-6 md:px-14 lg:px-20 pt-[16vh]  flex flex-col justify-center items-center gap-7  relative h-[75dvh] max-h-[90vh] md:h-dvh">
       {/* Hero Text */}
       <div className="font-header font-bold text-3xl md:text-5xl lg:text-[4.5rem] flex flex-col gap-5 text-center">
-        <FadeUp className="flex gap-3 flex-nowrap md:gap-4 w-full items-center justify-center">
+        <FadeUp className="flex gap-3 flex-nowrap  w-full items-center justify-center">
           <h1>Prepare</h1>
           <img
             src="/brand/logo.svg"
