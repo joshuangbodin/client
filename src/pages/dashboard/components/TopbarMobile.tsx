@@ -9,7 +9,7 @@ interface TopbarMobileProps {
 const TopbarMobile: FC<TopbarMobileProps> = ({ setOpen }) => {
   const { user } = useAuth();
   return (
-    <div className="md:hidden text-gray-500 rounded-b-3xl flex items-center p-4 border-r justify-between w-full bg-white">
+    <div className="md:hidden text-gray-500 rounded-b-3xl flex items-center p-4  justify-between w-full bg-white">
       <div className="flex gap-2">
           <button onClick={() => setOpen(true)}>
             <Menu size={20} />
