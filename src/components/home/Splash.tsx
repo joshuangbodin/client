@@ -3,7 +3,7 @@ import FadeUp from "../FadeUp";
 
 export default function Splash() {
   return (
-    <div className="px-6 md:px-14 lg:px-20 pt-[12vh] md:pt-[20vh]  flex flex-col justify-center items-center gap-7  relative h-[75dvh] max-h-[90vh] md:h-dvh">
+    <div className="px-6 md:px-14 lg:px-20 pt-[12vh] md:pt-[20vh]  flex flex-col justify-center items-center gap-7  relative h-screen md:h-[85vh]">
       {/* Hero Text */}
       <div className="font-header font-bold text-3xl md:text-5xl lg:text-[4.5rem] flex flex-col gap-5 text-center">
         <FadeUp className="flex gap-3 flex-nowrap  w-full items-center justify-center">
@@ -38,11 +38,11 @@ export default function Splash() {
 
       {/* Designs */}
       <FadeUp
-        className="hidden lg:flex  md:justify-between justify-center  -bottom-40 w-full md:absolute -z-50"
+        className="flex  md:justify-between justify-center  -bottom-[40vh] w-full md:absolute -z-50"
         delay={0.35}
       >
-        <img src="splash.svg" className="h-[50vh] md:opacity-20 md:h-max" />
-        <img src="splash.svg" className="hidden md:opacity-20 md:block " />
+        <img src="splash.svg" className="h-[50vh] md:opacity-45 md:h-max" />
+        <img src="splash.svg" className="hidden md:opacity-45 md:block " />
       </FadeUp>
     </div>
   );
