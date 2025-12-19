@@ -55,10 +55,10 @@ const GridCards = ({ heading, supporting, route, index }: any) => {
       }`}
       to={route}
     >
-      <span className="absolute top-3 right-3 bg-white p-3 text-black rounded-full aspect-square">
+      <span className="absolute top-3 right-3 bg-white p-2 md:p-3 text-black rounded-full aspect-square">
         <ArrowUpRight />
       </span>
-      <h1 className="text-lg md:text-xl font-semibold font-header">
+      <h1 className="text-base md:text-lg lg:text-xl font-semibold font-header">
         {heading.split("\n").map((line: string) => (
           <span>
             {line} <br />

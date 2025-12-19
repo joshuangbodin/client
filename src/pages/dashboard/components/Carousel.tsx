@@ -74,12 +74,16 @@ function SlideCard({ headline, cta, imgsrc, index }: SlideProps) {
   return (
     <div
       className={`relative flex items-center justify-between ${
-        index%3 == 0 ? "bg-neutral-600" : index%2 == 0 ? "bg-neutral-800" : "bg-neutral-400"
+        index % 3 == 0
+          ? "bg-neutral-600"
+          : index % 2 == 0
+          ? "bg-neutral-800"
+          : "bg-neutral-400"
       } rounded-3xl h-[180px] md:h-[210px] lg:h-[250px] px-6 md:px-10 overflow-hidden`}
     >
       {/* LEFT CONTENT */}
       <div className="z-10 max-w-[60%]">
-        <h2 className="text-white font-header text-xl md:text-2xl lg:text-3xl font-semibold leading-tight mb-4">
+        <h2 className="text-white font-header text-base md:text-2xl lg:text-3xl font-semibold leading-tight mb-4">
           {headline.split("\n").map((line, index) => (
             <span key={index} className="block">
               {line}
@@ -87,14 +91,14 @@ function SlideCard({ headline, cta, imgsrc, index }: SlideProps) {
           ))}
         </h2>
 
-        <button className="inline-flex items-center gap-2 bg-black/80 text-white text-xs md:text-sm lg:text-base px-4 py-2 rounded-full font-semibold transition hover:scale-95 hover:bg-black">
+        <button className="inline-flex items-center gap-2 bg-black/80 text-white text-xs md:text-sm lg:text-base px-2 md:px-4 py-2 rounded-full font-semibold transition hover:scale-95 hover:bg-black">
           {cta}
           <ArrowRight size={16} />
         </button>
       </div>
 
       {/* RIGHT IMAGE */}
-      <div className="absolute -right-10 md:right-0 -bottom-50 lg:right-10 flex items-end">
+      <div className="absolute -right-20 md:right-0 -bottom-50 lg:right-10 flex items-end">
         <img
           src={imgsrc}
           alt={headline}
