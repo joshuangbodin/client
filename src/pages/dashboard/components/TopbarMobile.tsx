@@ -11,10 +11,12 @@ const TopbarMobile: FC<TopbarMobileProps> = ({ setOpen }) => {
   return (
     <div className="md:hidden text-gray-500 rounded-b-3xl flex items-center p-4  justify-between w-full bg-white">
       <div className="flex gap-2">
-          <button onClick={() => setOpen(true)}>
-            <Menu size={20} />
-          </button>
-          <h1 className="ml-4 font-semibold font-header text-base">Dashboard</h1>
+        <button onClick={() => setOpen(true)}>
+          <Menu size={20} />
+        </button>
+        <h1 className="ml-4 font-semibold text-black  font-header text-xl">
+          Hi {user?.name.split(" ")[0]}!
+        </h1>
       </div>
 
       <span className="bg-black px-3 flex justify-center items-center font-bold rounded-full text-white font-header aspect-square">

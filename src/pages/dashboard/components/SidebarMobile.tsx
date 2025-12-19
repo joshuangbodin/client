@@ -2,6 +2,7 @@ import type { FC } from "react";
 import { X } from "lucide-react";
 import { motion } from "framer-motion";
 import type { MenuItem } from "./SidebarDesktop";
+import { Link } from "react-router";
 
 interface SidebarMobileProps {
   open: boolean;
@@ -48,15 +49,20 @@ const SidebarMobile: FC<SidebarMobileProps> = ({
               ApplySteeze
             </h2>
           </div>
-          {menuItems.map((item, idx) => (
-            <button
-              key={idx}
-              className="flex items-center gap-3 w-full text-left py-3 px-2 hover:bg-gray-100 rounded-lg"
-            >
-              {item.icon}
-              <span className="text-md">{item.label}</span>
-            </button>
-          ))}
+          {menuItems.map((item, idx) => {
+            const isActive = location.pathname === item.path;
+            return (
+              <Link
+                to={item.path}
+                key={idx}
+                className={`flex items-center gap-3 w-full text-left py-3 px-2 hover:bg-gray-100 ${isActive ? "bg-gray-300 text-gray-700" : ""} rounded-lg`}
+              >
+
+                {item.icon}
+                <span className="text-sm">{item.label}</span>
+              </Link>
+            );
+          })}
         </div>
       </motion.div>
     </>
