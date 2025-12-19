@@ -1,4 +1,4 @@
-import { ArrowUpRight, SpaceIcon } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router";
 
 const griddata = [
