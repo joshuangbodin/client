@@ -33,7 +33,7 @@ export default function Layout() {
       <SidebarMobile open={open} setOpen={setOpen} menuItems={menuItems} />
 
       {/* Main content */}
-      <section className="flex-1 w-screen  overflow-auto mt-0 px-5 md:px-7 bg-white md:bg-transparent  lg:px-14 ">
+      <section className="flex-1 w-screen max-h-full  overflow-y-scroll mt-0 px-5 md:px-7 bg-white md:bg-transparent  lg:px-14 ">
         <TopBarDesktop />
         <Outlet />
       </section>

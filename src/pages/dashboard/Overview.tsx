@@ -1,12 +1,11 @@
 import Carousel from "./components/Carousel";
-import TopBarDesktop from "./components/TopBarDesktop";
+import OverViewGrid from "./components/OverViewGrid";
 
 export default function Overview() {
   return (
-    <main className="">
-     
-      
+    <main className="max-h-full">
       <Carousel />
+      <OverViewGrid/>
     </main>
   );
 }
