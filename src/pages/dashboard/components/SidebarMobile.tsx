@@ -30,7 +30,7 @@ const SidebarMobile: FC<SidebarMobileProps> = ({
       )}
 
       <motion.div
-        className="fixed top-0 text-gray-500 left-0 h-full w-60 bg-white shadow-xl z-50 md:hidden"
+        className="fixed top-0 text-gray-800 left-0 h-full w-60 bg-white shadow-xl z-50 md:hidden"
         animate={open ? "visible" : "hidden"}
         variants={variants}
         transition={{ type: "spring", stiffness: 200, damping: 25 }}
