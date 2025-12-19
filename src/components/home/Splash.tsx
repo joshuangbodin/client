@@ -35,15 +35,6 @@ export default function Splash() {
           Get Started for free
         </button>
       </FadeUp>
-
-      {/* Designs */}
-      <FadeUp
-        className="flex  md:justify-between justify-center  -bottom-[40vh] w-full md:absolute -z-50"
-        delay={0.35}
-      >
-        <img src="splash.svg" className="h-[50vh] md:opacity-45 md:h-max" />
-        <img src="splash.svg" className="hidden md:opacity-45 md:block " />
-      </FadeUp>
     </div>
   );
 }
