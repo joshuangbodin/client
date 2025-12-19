@@ -54,7 +54,7 @@ const NavBar = ({ showFullNav = true }: props) => {
       initial={{ opacity: 0, y: -40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="w-full z-50 transition-all fixed top-0 duration-500"
+      className="w-full z-50 transition-all sticky top-0 duration-500"
     >
       <nav className="flex justify-between items-center px-6 md:px-14 lg:px-20 py-5 font-bricolage">
         {/* Logo */}
