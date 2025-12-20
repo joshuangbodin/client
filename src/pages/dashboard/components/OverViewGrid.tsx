@@ -44,7 +44,7 @@ export default function OverViewGrid() {
 const GridCards = ({ heading, supporting, route, index }: any) => {
   return (
     <Link
-      className={`relative min-h-48 md:min-h-56 h-full p-5 rounded-3xl flex flex-col justify-end gap-4  w-full ${
+      className={`relative  md:min-h-56 h-full p-5 rounded-3xl flex flex-col justify-end gap-4  w-full ${
         index == 0
           ? "bg-neutral-800 text-white lg:col-span-2"
           : index == 1
@@ -55,7 +55,7 @@ const GridCards = ({ heading, supporting, route, index }: any) => {
       }`}
       to={route}
     >
-      <span className="absolute top-3 right-3 bg-white p-2 md:p-3 text-black rounded-full aspect-square">
+      <span className="w-max self-end  bg-white p-2 md:p-3 text-black rounded-full aspect-square">
         <ArrowUpRight />
       </span>
       <h1 className="text-base md:text-lg lg:text-xl font-semibold font-header">
@@ -69,7 +69,7 @@ const GridCards = ({ heading, supporting, route, index }: any) => {
         {" "}
         {supporting.split(",").map((line: string) => (
           <span>
-            {line} <br />
+            {line} <br className="hidden md:block" />
           </span>
         ))}
       </p>

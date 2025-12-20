@@ -55,11 +55,11 @@ const SidebarMobile: FC<SidebarMobileProps> = ({
               <Link
                 to={item.path}
                 key={idx}
-                className={`flex items-center gap-3 w-full text-left py-3 px-2 hover:bg-gray-100 ${isActive ? "bg-gray-300 text-gray-700" : ""} rounded-lg`}
+                className={`flex items-center justify-center gap-3 w-full text-left py-3 px-2 hover:bg-gray-100 ${isActive ? "bg-neutral-200 text-neutral-700" : ""} rounded-2xl`}
               >
 
                 {item.icon}
-                <span className="text-sm">{item.label}</span>
+                <span className="text-sm w-1/2">{item.label}</span>
               </Link>
             );
           })}
