@@ -44,7 +44,7 @@ export default function OverViewGrid() {
 const GridCards = ({ heading, supporting, route, index }: any) => {
   return (
     <Link
-      className={`relative md:min-h-56 h-full p-5 rounded-3xl flex flex-col justify-end gap-4  w-full ${
+      className={`relative min-h-48 md:min-h-56 h-full p-5 rounded-3xl flex flex-col justify-end gap-4  w-full ${
         index == 0
           ? "bg-neutral-800 text-white lg:col-span-2"
           : index == 1
