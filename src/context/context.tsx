@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth, db } from "../libraries/firebase/firebase";
 import { doc, getDoc } from "firebase/firestore";
+import type { ContactInfo, Education, WorkExperience } from "../types/resume";
 
 interface UserData {
   uid: string;
@@ -9,6 +10,10 @@ interface UserData {
   email: string;
   avatar: string;
   [key: string]: any;
+  education?: Education[];
+  workExperience?: WorkExperience[];
+  skills?: string[];
+  contactInfo?: ContactInfo;
 }
 
 interface AuthContextType {

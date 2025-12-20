@@ -17,7 +17,15 @@ export default function MorePage() {
   <Navigate to={"/signin"} />;
 
   //   getting user info
-  const { avatar, email, name } = user;
+  const {
+    avatar,
+    email,
+    name,
+    contactInfo,
+    education,
+    skills,
+    workExperience,
+  } = user;
   return (
     <main className="flex w-full gap-3 pt-4 ">
       <div className="w-full space-y-10 lg:w-3/4">
@@ -40,14 +48,14 @@ export default function MorePage() {
 
           <div className="flex items-center justify-end w-full gap-3">
             <Link
-              className=" bg-gray-50 md:bg-neutral-200 inline-flex rounded-xl space-x-2 p-1 px-2  md:p-2 text-neutral-500 text-xs md:text-sm items-center"
+              className=" bg-gray-50 md:bg-neutral-200 hover:scale-90 duration-300 transition-all  inline-flex rounded-xl space-x-2 p-1 px-2  md:p-2 text-neutral-500 text-xs md:text-sm items-center"
               to={"edit"}
             >
               <PenIcon className="w-3 md:w-5" />
               <span>Edit Info</span>
             </Link>
             <button
-              className=" bg-red-100 inline-flex rounded-xl space-x-2 p-1 px-2  md:p-2 text-red-500 text-xs md:text-sm items-center"
+              className=" bg-red-100 cursor-pointer hover:scale-90 duration-300 transition-all inline-flex rounded-xl space-x-2 p-1 px-2  md:p-2 text-red-500 text-xs md:text-sm items-center"
               onClick={LogOutUser}
             >
               <LogOut className="w-4 md:w-5" />
@@ -67,12 +75,19 @@ export default function MorePage() {
             profiles, which makes it easier to generate CVs and interviews for
             multiple Job roles.
           </p>
+
+          {education || workExperience || contactInfo || skills ? (
+            <section></section>
+          ) : (
+            <Link className=" bg-red-100" to={"edit"}>
+              No Work
+            </Link>
+          )}
         </div>
       </div>
 
       {/* Complete Profile display */}
-      <div className="hidden lg:block bg-white h-[80vh] border rounded-4xl border-gray-200 lg:w-1/4">
-      </div>
+      <div className="hidden lg:block bg-white h-[80vh] border rounded-4xl border-gray-200 lg:w-1/4"></div>
     </main>
   );
 }
