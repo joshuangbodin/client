@@ -1,5 +1,5 @@
 import type { FC, ReactNode } from "react";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 
 export interface MenuItem {
   icon: ReactNode;
@@ -12,6 +12,7 @@ interface SidebarDesktopProps {
 }
 
 const SidebarDesktop: FC<SidebarDesktopProps> = ({ menuItems }) => {
+  const location = useLocation();
   return (
     <aside className="hidden md:flex flex-col items-center text-gray-800 md:w-16 px-1 lg:w-52 lg:px-5 bg-white shadow h-full py-6">
       <div className="flex items-center gap-2 py-5">
@@ -27,7 +28,7 @@ const SidebarDesktop: FC<SidebarDesktopProps> = ({ menuItems }) => {
             to={item.path}
             key={idx}
             className={`flex items-center gap-3 w-full justify-center  text-left py-3 lg:px-2 hover:bg-gray-100 ${
-              isActive ? "bg-neutral-200 text-gray-700 border-" : ""
+              isActive ? "bg-neutral-200 text-gray-700 " : ""
             } rounded-2xl`}
           >
             {item.icon}

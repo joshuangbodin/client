@@ -2,7 +2,7 @@ import type { FC } from "react";
 import { X } from "lucide-react";
 import { motion } from "framer-motion";
 import type { MenuItem } from "./SidebarDesktop";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 
 interface SidebarMobileProps {
   open: boolean;
@@ -20,6 +20,7 @@ const SidebarMobile: FC<SidebarMobileProps> = ({
   setOpen,
   menuItems,
 }) => {
+  const location = useLocation();
   return (
     <>
       {open && (
@@ -55,9 +56,10 @@ const SidebarMobile: FC<SidebarMobileProps> = ({
               <Link
                 to={item.path}
                 key={idx}
-                className={`flex items-center justify-center gap-3 w-full text-left py-3 px-2 hover:bg-gray-100 ${isActive ? "bg-neutral-200 text-neutral-700" : ""} rounded-2xl`}
+                className={`flex items-center justify-center gap-3 w-full text-left py-3 px-2 hover:bg-gray-100 ${
+                  isActive ? "bg-neutral-200 text-neutral-700" : ""
+                } rounded-2xl`}
               >
-
                 {item.icon}
                 <span className="text-sm w-1/2">{item.label}</span>
               </Link>
