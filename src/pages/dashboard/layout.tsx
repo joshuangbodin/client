@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
-import { Home, Settings, File } from "lucide-react";
+import { Home, File, LayoutDashboard } from "lucide-react";
 
 import TopbarMobile from "./components/TopbarMobile";
 import SidebarDesktop from "./components/SidebarDesktop";
@@ -15,9 +15,9 @@ export default function Layout() {
     { icon: <Home size={ICON_SIZE} />, label: "Home", path: "/dashboard" },
     { icon: <File size={ICON_SIZE} />, label: "Resumes", path: "/dashboard/resume" },
     {
-      icon: <Settings size={ICON_SIZE} />,
-      label: "Settings",
-      path: "/dashboard/settings",
+      icon: <LayoutDashboard size={ICON_SIZE} />,
+      label: "More",
+      path: "/dashboard/more",
     },
   ];
 

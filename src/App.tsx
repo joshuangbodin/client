@@ -9,6 +9,7 @@ const SignIn = lazy(() => import("./pages/SignIn"));
 
 // dashboard
 const DashboardOverview = lazy(() => import("./pages/dashboard/Overview"));
+const MorePage = lazy(() => import("./pages/dashboard/MorePage"));
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
 
           <Route path="dashboard" element={<Layout />}>
             <Route index element={<DashboardOverview />} />
+            <Route path={"more"} element={<MorePage/>} />
           </Route>
 
           <Route
