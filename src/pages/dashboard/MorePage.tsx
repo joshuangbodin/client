@@ -3,7 +3,8 @@ import { useAuth } from "../../context/context";
 
 import { signOut } from "firebase/auth";
 import { auth } from "../../libraries/firebase/firebase";
-import { LogOut, PenIcon } from "lucide-react";
+import { LogOut, PenIcon, PlusCircle } from "lucide-react";
+import CompleteProfile from "./components/CompleteProfile";
 
 export default function MorePage() {
   const { user } = useAuth();
@@ -32,13 +33,16 @@ export default function MorePage() {
         {/* Profile Account info */}
         <div className="flex flex-col md:flex-row gap-2 justify-between items-start md:items-center">
           <div className="flex gap-4 items-center">
-            <img className="rounded-2xl" src={avatar} />
+            <img
+              className="rounded-2xl w-22 aspect-square bg-gray-100"
+              src={avatar}
+            />
             <div className="text-sm space-y-1 lg:text-base text-neutral-500">
               <h2 className="font-header text-black  font-semibold text-xl">
                 {name}
               </h2>
               <p>{email}</p>
-              <span className="text-xs py-1 px-2 bg-green-100 text-green-500 rounded-md">
+              <span className="text-xs py-1 px-2 bg-neutral-200 text-neutral-500 rounded-full">
                 Synced with Google
               </span>
             </div>
@@ -46,16 +50,16 @@ export default function MorePage() {
 
           {/* Edit Button */}
 
-          <div className="flex items-center justify-end w-full gap-3">
+          <div className="flex md:w-1/3 items-center mt-3 justify-between w-full gap-3">
             <Link
-              className=" bg-gray-50 md:bg-neutral-200 hover:scale-90 duration-300 transition-all  inline-flex rounded-xl space-x-2 p-1 px-2  md:p-2 text-neutral-500 text-xs md:text-sm items-center"
-              to={"edit"}
+              className=" flex-1 justify-center bg-neutral-800  hover:scale-90 duration-300 transition-all  inline-flex rounded-full space-x-2 p-1 px-2 py-2 md:py-1  md:p-2 text-neutral-200 text-xs md:text-sm items-center"
+              to={"/edit-user-info"}
             >
               <PenIcon className="w-3 md:w-5" />
               <span>Edit Info</span>
             </Link>
             <button
-              className=" bg-red-100 cursor-pointer hover:scale-90 duration-300 transition-all inline-flex rounded-xl space-x-2 p-1 px-2  md:p-2 text-red-500 text-xs md:text-sm items-center"
+              className="flex-1 justify-center border cursor-pointer hover:scale-90 duration-300 transition-all inline-flex rounded-full space-x-2 p-1 px-2 py-2 md:py-1  md:p-2  text-xs md:text-sm items-center"
               onClick={LogOutUser}
             >
               <LogOut className="w-4 md:w-5" />
@@ -79,15 +83,20 @@ export default function MorePage() {
           {education || workExperience || contactInfo || skills ? (
             <section></section>
           ) : (
-            <Link className=" bg-red-100" to={"edit"}>
-              No Work
-            </Link>
+            <div className="md:w-max">
+              <Link
+                className="py-2 px-3 bg-neutral-700 items-center gap-2 text-white rounded-full text-xs  flex justify-center  mt-4"
+                to={"/edit-user-info"}
+              >
+                <PlusCircle className="w-5 md:w-7" /> Add Professional Details
+              </Link>
+            </div>
           )}
         </div>
       </div>
 
       {/* Complete Profile display */}
-      <div className="hidden lg:block bg-white h-[80vh] border rounded-4xl border-gray-200 lg:w-1/4"></div>
+      <CompleteProfile />
     </main>
   );
 }
