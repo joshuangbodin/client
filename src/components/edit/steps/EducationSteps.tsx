@@ -1,4 +1,5 @@
 // components/edit/steps/EducationStep.tsx
+import { PlusCircle } from "lucide-react";
 import type { UserData } from "../../../context/context";
 import type { Education } from "../../../types/resume";
 
@@ -53,12 +54,12 @@ export default function EducationStep({ userData, setUserData }: Props) {
   return (
     <div className="space-y-6">
       {education.map((edu, index) => (
-        <div key={index} className="border rounded p-4 space-y-3">
+        <div key={index} className="border border-gray-100 bg-gray-50 rounded-xl p-4 space-y-3">
           <input
             placeholder="Degree"
             value={edu.degree}
             onChange={(e) => updateField(index, "degree", e.target.value)}
-            className="w-full border px-3 py-2 rounded"
+            className="w-full text-xs h-10 bg-white border border-gray-200 rounded-full px-3 py-2"
           />
 
           <input
@@ -67,7 +68,7 @@ export default function EducationStep({ userData, setUserData }: Props) {
             onChange={(e) =>
               updateField(index, "institution", e.target.value)
             }
-            className="w-full border px-3 py-2 rounded"
+            className="w-full text-xs h-10 bg-white border border-gray-200 rounded-full px-3 py-2"
           />
 
           <div className="flex gap-3">
@@ -77,13 +78,13 @@ export default function EducationStep({ userData, setUserData }: Props) {
               onChange={(e) =>
                 updateField(index, "startYear", e.target.value)
               }
-              className="w-1/2 border px-3 py-2 rounded"
+              className="w-1/2 text-xs h-10 bg-white border border-gray-200 rounded-full px-3 py-2"
             />
             <input
               placeholder="End Year"
               value={edu.endYear}
               onChange={(e) => updateField(index, "endYear", e.target.value)}
-              className="w-1/2 border px-3 py-2 rounded"
+              className="w-1/2 text-xs h-10 bg-white border border-gray-200 rounded-full px-3 py-2"
             />
           </div>
 
@@ -93,7 +94,7 @@ export default function EducationStep({ userData, setUserData }: Props) {
             onChange={(e) =>
               updateField(index, "description", e.target.value)
             }
-            className="w-full border px-3 py-2 rounded min-h-20"
+            className="w-full text-xs h-10 bg-white border border-gray-200 rounded-2xl px-3 py-2 min-h-20"
           />
 
           <button
@@ -105,8 +106,8 @@ export default function EducationStep({ userData, setUserData }: Props) {
         </div>
       ))}
 
-      <button onClick={addEducation} className="px-4 py-2 border rounded">
-        + Add Education
+      <button onClick={addEducation} className="px-12 py-2 flex items-center gap-2 bg-neutral-600 text-white text-xs md:text-sm  rounded-full">
+        <PlusCircle className="w-4"/> Add Education
       </button>
     </div>
   );

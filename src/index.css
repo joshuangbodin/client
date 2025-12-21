@@ -99,6 +99,18 @@
   
 }
 
+/* Reset Safari and browser-specific input styles */
+/* Safely reset Safari input/textarea quirks */
+input,
+textarea,
+select {
+  -webkit-appearance: none;
+  appearance: none;  /* Removes native styles */
+     /* Ensure proper sizing */
+}
+
+
+
 
 
 

@@ -1,4 +1,3 @@
-import React from "react";
 import type { UserData } from "../../context/context";
 
 interface PreviewPanelProps {
@@ -42,7 +41,9 @@ export default function PreviewPanel({
       {/* Education Section */}
       {(activeStep === "Education" || activeStep === "Basic Info") && (
         <div className="mb-4">
-          <h2 className="text-lg font-semibold border-b pb-1 mb-2">Education</h2>
+          <h2 className="text-lg font-semibold border-b pb-1 mb-2">
+            Education
+          </h2>
           {(education ?? []).length === 0 && (
             <p className="text-gray-400">No education added yet</p>
           )}

@@ -1,3 +1,4 @@
+import { PlusCircleIcon } from "lucide-react";
 import type { UserData } from "../../../context/context";
 import type { WorkExperience } from "../../../types/resume";
 import { format } from "date-fns";
@@ -47,19 +48,22 @@ export default function WorkExperienceStep({ userData, setUserData }: Props) {
   return (
     <div className="space-y-6">
       {experience.map((job, index) => (
-        <div key={index} className="border rounded p-4 space-y-3">
+        <div
+          key={index}
+          className="border border-gray-100 bg-gray-50 rounded-2xl p-4 space-y-3"
+        >
           <input
             placeholder="Job Title"
             value={job.title}
             onChange={(e) => updateField(index, "title", e.target.value)}
-            className="w-full border px-3 py-2 rounded"
+            className="w-full text-xs h-10 bg-white border border-gray-200 rounded-full px-3 py-2"
           />
 
           <input
             placeholder="Company"
             value={job.company}
             onChange={(e) => updateField(index, "company", e.target.value)}
-            className="w-full border px-3 py-2 rounded"
+            className="w-full text-xs h-10 bg-white border border-gray-200 rounded-full px-3 py-2"
           />
 
           <div className="flex gap-3">
@@ -74,7 +78,7 @@ export default function WorkExperienceStep({ userData, setUserData }: Props) {
                   : "";
                 updateField(index, "start", formatted);
               }}
-              className="w-1/2 border px-3 py-2 rounded"
+              className="w-1/2 border border-gray-200 px-3 py-2 bg-white rounded-full"
             />
 
             <input
@@ -88,7 +92,7 @@ export default function WorkExperienceStep({ userData, setUserData }: Props) {
                   : "";
                 updateField(index, "end", formatted);
               }}
-              className="w-1/2 border px-3 py-2 rounded"
+              className="w-1/2 border border-gray-200 px-3 py-2 bg-white rounded-full"
             />
           </div>
 
@@ -96,7 +100,7 @@ export default function WorkExperienceStep({ userData, setUserData }: Props) {
             placeholder="Description"
             value={job.description}
             onChange={(e) => updateField(index, "description", e.target.value)}
-            className="w-full border px-3 py-2 rounded min-h-[90px]"
+            className="w-full text-xs h-10 bg-white border border-gray-200 rounded-2xl px-3 py-2 min-h-[90px]"
           />
 
           <button
@@ -108,8 +112,11 @@ export default function WorkExperienceStep({ userData, setUserData }: Props) {
         </div>
       ))}
 
-      <button onClick={addExperience} className="px-4 py-2 border rounded">
-        + Add Work Experience
+      <button
+        onClick={addExperience}
+        className="px-4 py-2 flex items-center gap-2 bg-neutral-700 text-xs md:text-sm text-white rounded-full"
+      >
+        <PlusCircleIcon className="w-4" /> Add Work Experience
       </button>
     </div>
   );
