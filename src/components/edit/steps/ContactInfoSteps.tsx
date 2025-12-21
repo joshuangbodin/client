@@ -14,7 +14,7 @@ export default function ContactInfoStep({ userData, setUserData }: any) {
             contactInfo: { ...prev.contactInfo, phone: e.target.value },
           }))
         }
-        className="w-full text-xs h-10 bg-gray-50 border border-gray-200 rounded-full px-3 py-2"
+        className="w-full text-xs md:text-sm h-10 bg-gray-50 border border-gray-200 rounded-full px-3 py-2"
       />
 
       <input
@@ -26,7 +26,7 @@ export default function ContactInfoStep({ userData, setUserData }: any) {
             contactInfo: { ...prev.contactInfo, location: e.target.value },
           }))
         }
-        className="w-full text-xs h-10 bg-gray-50 border border-gray-200 rounded-full px-3 py-2"
+        className="w-full text-xs md:text-sm h-10 bg-gray-50 border border-gray-200 rounded-full px-3 py-2"
       />
     </div>
   );

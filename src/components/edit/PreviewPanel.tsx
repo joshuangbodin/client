@@ -13,7 +13,7 @@ export default function PreviewPanel({
     userData;
 
   return (
-    <div className="w-1/2 hidden lg:block bg-white border rounded-3xl p-6 overflow-y-scroll border-gray-300 h-[80vh] shadow-sm">
+    <div className="w-1/2 hidden lg:block bg-gray-50 font-serif border rounded-3xl p-6 overflow-y-scroll border-gray-300 h-[80vh] ">
       {/* Header */}
       <div className="flex items-center gap-4 mb-6">
         {avatar && (

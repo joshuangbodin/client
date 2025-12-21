@@ -54,47 +54,49 @@ export default function EducationStep({ userData, setUserData }: Props) {
   return (
     <div className="space-y-6">
       {education.map((edu, index) => (
-        <div key={index} className="border border-gray-100 bg-gray-50 rounded-xl p-4 space-y-3">
+        <div
+          key={index}
+          className="border border-gray-100 bg-gray-50 rounded-xl p-4 space-y-3"
+        >
           <input
             placeholder="Degree"
             value={edu.degree}
             onChange={(e) => updateField(index, "degree", e.target.value)}
-            className="w-full text-xs h-10 bg-white border border-gray-200 rounded-full px-3 py-2"
+            className="w-full text-xs 
+md:text-sm h-10 bg-white border border-gray-200 rounded-full px-3 py-2"
           />
 
           <input
             placeholder="Institution"
             value={edu.institution}
-            onChange={(e) =>
-              updateField(index, "institution", e.target.value)
-            }
-            className="w-full text-xs h-10 bg-white border border-gray-200 rounded-full px-3 py-2"
+            onChange={(e) => updateField(index, "institution", e.target.value)}
+            className="w-full text-xs
+md:text-sm h-10 bg-white border border-gray-200 rounded-full px-3 py-2"
           />
 
           <div className="flex gap-3">
             <input
               placeholder="Start Year"
               value={edu.startYear}
-              onChange={(e) =>
-                updateField(index, "startYear", e.target.value)
-              }
-              className="w-1/2 text-xs h-10 bg-white border border-gray-200 rounded-full px-3 py-2"
+              onChange={(e) => updateField(index, "startYear", e.target.value)}
+              className="w-1/2 text-xs 
+md:text-sm h-10 bg-white border border-gray-200 rounded-full px-3 py-2"
             />
             <input
               placeholder="End Year"
               value={edu.endYear}
               onChange={(e) => updateField(index, "endYear", e.target.value)}
-              className="w-1/2 text-xs h-10 bg-white border border-gray-200 rounded-full px-3 py-2"
+              className="w-1/2 text-xs 
+md:text-sm h-10 bg-white border border-gray-200 rounded-full px-3 py-2"
             />
           </div>
 
           <textarea
             placeholder="Description (optional)"
             value={edu.description ?? ""}
-            onChange={(e) =>
-              updateField(index, "description", e.target.value)
-            }
-            className="w-full text-xs h-10 bg-white border border-gray-200 rounded-2xl px-3 py-2 min-h-20"
+            onChange={(e) => updateField(index, "description", e.target.value)}
+            className="w-full text-xs 
+md:text-sm h-10 bg-white border border-gray-200 rounded-2xl px-3 py-2 min-h-20"
           />
 
           <button
@@ -106,8 +108,12 @@ export default function EducationStep({ userData, setUserData }: Props) {
         </div>
       ))}
 
-      <button onClick={addEducation} className="px-12 py-2 flex items-center gap-2 bg-neutral-600 text-white text-xs md:text-sm  rounded-full">
-        <PlusCircle className="w-4"/> Add Education
+      <button
+        onClick={addEducation}
+        className="px-12 py-2 flex items-center gap-2 bg-neutral-600 text-white text-xs md:text-sm
+  rounded-full"
+      >
+        <PlusCircle className="w-4" /> Add Education
       </button>
     </div>
   );

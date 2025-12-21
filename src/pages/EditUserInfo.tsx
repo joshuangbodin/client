@@ -18,9 +18,10 @@ import {
   Phone,
   User,
 } from "lucide-react";
+import { editUserInfo } from "../libraries/firebase/users";
 
 export default function EditUserInfo() {
-  const { user } = useAuth();
+  const { user , setUser } = useAuth();
   if (!user) return <Navigate to="/signin" />;
 
   const [userData, setUserData] = useState<UserData>(user);
@@ -38,6 +39,18 @@ export default function EditUserInfo() {
   const goBack = () => {
     if (stepIndex > 0) {
       setActiveStep(STEPS[stepIndex - 1]);
+    }
+  };
+
+  const HandleSubmit = async () => {
+    console.log(userData);
+    const { data, success } = await editUserInfo(userData, user.uid);
+
+    if (success) {
+      console.log(data);
+      setUser(userData)
+    } else {
+      console.log(data);
     }
   };
 
@@ -60,13 +73,19 @@ export default function EditUserInfo() {
 
   return (
     <div className="bg-white min-h-screen pt-4 h-screen overflow-hidden px-4 md:px-15 lg:px-20">
-      <ScreenTop name="Edit User Information" />
+      <ScreenTop />
 
-      <main className="flex gap-6">
+      <main className="flex md:justify-between gap-6">
         {/* Form */}
-        <div className="w-full lg:w-1/2 h-[80vh] overflow-y-scroll pt-3 md:pt-6">
+        <div className="w-full lg:w-1/2 lg:px-10 h-[80vh]  overflow-y-scroll pt-3 md:pt-6">
+          <h1 className=" text-xl md:text-3xl font-header font-semibold">
+            Edit Professional Information
+          </h1>
+          <p className="mb-6 text-gray-500 text-xs md:text-sm">
+            Your Professional Informtion Helps us serve you better.
+          </p>
           {/* Step headers */}
-          <div className="flex ml-1 gap-2 mb-6">
+          <div className="flex ml-1  gap-2 mb-6">
             {STEPS.map((step) => {
               const isActive = step === activeStep;
 
@@ -116,7 +135,7 @@ export default function EditUserInfo() {
           </div>
 
           {/* Step content */}
-          <div className="min-h-[300px]">
+          <div className="md:min-h-[150px] w-[400px]">
             {activeStep === "Basic Info" && (
               <BasicInfoStep userData={userData} setUserData={setUserData} />
             )}
@@ -142,7 +161,7 @@ export default function EditUserInfo() {
           </div>
 
           {/* Navigation */}
-          <div className="flex gap-4 mt-6">
+          <div className="flex text-xs md:text-sm gap-4 mt-4">
             <button
               disabled={stepIndex === 0}
               onClick={goBack}
@@ -152,7 +171,7 @@ export default function EditUserInfo() {
             </button>
 
             <button
-              onClick={goNext}
+              onClick={stepIndex === STEPS.length - 1 ? HandleSubmit : goNext}
               className="px-12 py-2 bg-black text-white rounded-full"
             >
               {stepIndex === STEPS.length - 1 ? "Finish" : "Next"}
@@ -164,13 +183,12 @@ export default function EditUserInfo() {
         <PreviewPanel activeStep={activeStep} userData={userData} />
 
         {/* design */}
-        
       </main>
       <img
-          className="hidden md:block w-10 h-full fixed  right-0 top-0 object-cover"
-          src="/brand/pattern.png"
-          alt=""
-        />
+        className="hidden md:block w-10 h-full fixed  right-0 top-0 object-cover"
+        src="/brand/pattern.png"
+        alt=""
+      />
     </div>
   );
 }

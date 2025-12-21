@@ -16,7 +16,7 @@ export default function BasicInfoStep({ userData, setUserData }: Props) {
           onChange={(e) =>
             setUserData((prev) => ({ ...prev, name: e.target.value }))
           }
-          className="w-full text-xs h-10 bg-gray-50 border border-gray-200 rounded-full px-3 py-2"
+          className="w-full text-xs md:text-sm h-10 bg-gray-50 border border-gray-200 rounded-full px-3 py-2"
         />
       </div>
 
@@ -25,7 +25,7 @@ export default function BasicInfoStep({ userData, setUserData }: Props) {
         <input
           value={userData.email || ""}
           disabled
-          className="w-full text-xs h-10 bg-gray-50 disabled:text-gray-500 border border-gray-200 rounded-full px-3 py-2 "
+          className="w-full text-xs md:text-sm h-10 bg-gray-50 disabled:text-gray-500 border border-gray-200 rounded-full px-3 py-2 "
         />
       </div>
     </div>

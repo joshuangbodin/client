@@ -56,14 +56,14 @@ export default function WorkExperienceStep({ userData, setUserData }: Props) {
             placeholder="Job Title"
             value={job.title}
             onChange={(e) => updateField(index, "title", e.target.value)}
-            className="w-full text-xs h-10 bg-white border border-gray-200 rounded-full px-3 py-2"
+            className="w-full text-xs md:text-sm h-10 bg-white border border-gray-200 rounded-full px-3 py-2"
           />
 
           <input
             placeholder="Company"
             value={job.company}
             onChange={(e) => updateField(index, "company", e.target.value)}
-            className="w-full text-xs h-10 bg-white border border-gray-200 rounded-full px-3 py-2"
+            className="w-full text-xs md:text-sm h-10 bg-white border border-gray-200 rounded-full px-3 py-2"
           />
 
           <div className="flex gap-3">
@@ -100,7 +100,7 @@ export default function WorkExperienceStep({ userData, setUserData }: Props) {
             placeholder="Description"
             value={job.description}
             onChange={(e) => updateField(index, "description", e.target.value)}
-            className="w-full text-xs h-10 bg-white border border-gray-200 rounded-2xl px-3 py-2 min-h-[90px]"
+            className="w-full text-xs md:text-sm h-10 bg-white border border-gray-200 rounded-2xl px-3 py-2 min-h-[90px]"
           />
 
           <button
@@ -114,7 +114,7 @@ export default function WorkExperienceStep({ userData, setUserData }: Props) {
 
       <button
         onClick={addExperience}
-        className="px-4 py-2 flex items-center gap-2 bg-neutral-700 text-xs md:text-sm text-white rounded-full"
+        className="px-4 py-2 flex items-center gap-2 bg-neutral-700 text-xs md:text-sm md:text-sm text-white rounded-full"
       >
         <PlusCircleIcon className="w-4" /> Add Work Experience
       </button>

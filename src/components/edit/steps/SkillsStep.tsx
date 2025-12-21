@@ -37,7 +37,7 @@ export default function SkillsStep({ userData, setUserData }: Props) {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Add a skill"
-          className="w-full text-xs h-10 bg-gray-50 border border-gray-200 rounded-l-full px-3 py-2"
+          className="w-full text-xs md:text-sm h-10 bg-gray-50 border border-gray-200 rounded-l-full px-3 py-2"
         />
         <button
           onClick={addSkill}
