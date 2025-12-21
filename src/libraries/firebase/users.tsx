@@ -1,10 +1,13 @@
-import type { User } from "firebase/auth";
+import type { UserData } from "../../context/context";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "./firebase";
 
-const COLLECTIONID = "users";
+const COLLECTIONID = "userDatas";
 
-export const editUserInfo = async (userdata: Partial<User>, uid: string) => {
+export const editUserInfo = async (
+  userdata: Partial<UserData>,
+  uid: string
+) => {
   try {
     const userRef = doc(db, COLLECTIONID, uid);
     await setDoc(userRef, userdata);

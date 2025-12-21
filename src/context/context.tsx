@@ -4,7 +4,7 @@ import { auth, db } from "../libraries/firebase/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import type { ContactInfo, Education, WorkExperience } from "../types/resume";
 
-interface UserData {
+export interface UserData {
   uid: string;
   name: string;
   email: string;
