@@ -11,6 +11,13 @@ import ContactInfoStep from "../components/edit/steps/ContactInfoSteps";
 import EducationStep from "../components/edit/steps/EducationSteps";
 import SkillsStep from "../components/edit/steps/SkillsStep";
 import WorkExperienceSteps from "../components/edit/steps/WorkExperienceStep";
+import {
+  BicepsFlexed,
+  Building2Icon,
+  GraduationCap,
+  Phone,
+  User,
+} from "lucide-react";
 
 export default function EditUserInfo() {
   const { user } = useAuth();
@@ -34,28 +41,78 @@ export default function EditUserInfo() {
     }
   };
 
+  const getDisplayIcon = (actStep: Step) => {
+    switch (actStep) {
+      case "Basic Info":
+        return <User className="w-4 md:w-5" />;
+      case "Contact Info":
+        return <Phone className="w-4 md:w-5" />;
+      case "Education":
+        return <GraduationCap className="w-4 md:w-5" />;
+      case "Skills":
+        return <BicepsFlexed className="w-4 md:w-5" />;
+      case "Work Experience":
+        return <Building2Icon className="w-4 md:w-5" />;
+      default:
+        break;
+    }
+  };
+
   return (
     <div className="bg-white min-h-screen pt-4 h-screen overflow-hidden px-4 md:px-15 lg:px-20">
       <ScreenTop name="Edit User Information" />
 
       <main className="flex gap-6">
         {/* Form */}
-        <div className="w-full lg:w-1/2 h-[80vh] overflow-y-scroll pt-6">
+        <div className="w-full lg:w-1/2 h-[80vh] overflow-y-scroll pt-3 md:pt-6">
           {/* Step headers */}
-          <div className="flex gap-6 border-b mb-6">
-            {STEPS.map((step) => (
-              <button
-                key={step}
-                onClick={() => setActiveStep(step)}
-                className={`pb-3 font-semibold ${
-                  step === activeStep
-                    ? "border-b-2 border-black"
-                    : "text-gray-400"
-                }`}
-              >
-                {step}
-              </button>
-            ))}
+          <div className="flex ml-1 gap-2 mb-6">
+            {STEPS.map((step) => {
+              const isActive = step === activeStep;
+
+              return (
+                <button
+                  key={step}
+                  onClick={() => setActiveStep(step)}
+                  className={`
+          flex items-center gap-2 overflow-hidden
+          px-3 py-1 rounded-full text-xs md:text-sm font-semibold
+          transition-all duration-500 ease-in-out
+          ${
+            isActive
+              ? "bg-neutral-600 text-white scale-[1.03]"
+              : "bg-gray-100 border border-gray-300 text-gray-400 hover:text-gray-600"
+          }
+        `}
+                >
+                  {/* Icon */}
+                  <span
+                    className={`
+            flex items-center justify-center
+            transition-transform duration-500
+            ${isActive ? "scale-110" : "scale-100"}
+          `}
+                  >
+                    {getDisplayIcon(step)}
+                  </span>
+
+                  {/* Animated label */}
+                  <span
+                    className={`
+            whitespace-nowrap
+            transition-all duration-500 ease-out
+            ${
+              isActive
+                ? "opacity-100 translate-x-0 max-w-[140px]"
+                : "opacity-0 -translate-x-2 max-w-0"
+            }
+          `}
+                  >
+                    {step}
+                  </span>
+                </button>
+              );
+            })}
           </div>
 
           {/* Step content */}
@@ -85,18 +142,18 @@ export default function EditUserInfo() {
           </div>
 
           {/* Navigation */}
-          <div className="flex justify-between mt-6">
+          <div className="flex gap-4 mt-6">
             <button
               disabled={stepIndex === 0}
               onClick={goBack}
-              className="px-4 py-2 border rounded disabled:opacity-40"
+              className="px-12 py-2 border  rounded-full disabled:opacity-40"
             >
               Back
             </button>
 
             <button
               onClick={goNext}
-              className="px-4 py-2 bg-black text-white rounded"
+              className="px-12 py-2 bg-black text-white rounded-full"
             >
               {stepIndex === STEPS.length - 1 ? "Finish" : "Next"}
             </button>
@@ -105,7 +162,15 @@ export default function EditUserInfo() {
 
         {/* Live Preview */}
         <PreviewPanel activeStep={activeStep} userData={userData} />
+
+        {/* design */}
+        
       </main>
+      <img
+          className="hidden md:block w-10 h-full fixed  right-0 top-0 object-cover"
+          src="/brand/pattern.png"
+          alt=""
+        />
     </div>
   );
 }
