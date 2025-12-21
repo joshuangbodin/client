@@ -40,7 +40,7 @@ export default function EditUserInfo() {
 
       <main className="flex gap-6">
         {/* Form */}
-        <div className="w-1/2 h-[80vh] overflow-y-scroll pt-6">
+        <div className="w-full lg:w-1/2 h-[80vh] overflow-y-scroll pt-6">
           {/* Step headers */}
           <div className="flex gap-6 border-b mb-6">
             {STEPS.map((step) => (
