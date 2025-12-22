@@ -105,7 +105,8 @@ input,
 textarea,
 select {
   -webkit-appearance: none;
-  appearance: none;  /* Removes native styles */
+  appearance: none; 
+  font-size: 14px; /* Removes native styles */
      /* Ensure proper sizing */
 }
 

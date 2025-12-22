@@ -1,5 +1,5 @@
 import { Link, Navigate } from "react-router";
-import { useAuth } from "../../context/context";
+import { useAuth, type UserData } from "../../context/context";
 
 import { signOut } from "firebase/auth";
 import { auth } from "../../libraries/firebase/firebase";
@@ -70,7 +70,7 @@ export default function MorePage() {
 
         {/* Professional Details are displayed here */}
         <div className="md:bg-white bg-gray-50 min-h-40 border border-gray-200 h-max rounded-xl p-5">
-          <h1 className="font-header font-semibold">
+          <h1 className="font-header text-lg md:text-xl font-semibold">
             Personal Professional Details
           </h1>
           <p className="text-sm text-gray-500 mt-2">
@@ -81,7 +81,9 @@ export default function MorePage() {
           </p>
 
           {education || workExperience || contactInfo || skills ? (
-            <section></section>
+            <section className="mt-4">
+              <ProfessionalDetailsSection {...user} />
+            </section>
           ) : (
             <div className="md:w-max">
               <Link
@@ -100,3 +102,97 @@ export default function MorePage() {
     </main>
   );
 }
+
+const ProfessionalDetailsSection = ({
+  contactInfo,
+  skills,
+  education,
+  workExperience,
+}: UserData) => {
+  return (
+    <div className="space-y-8 text-xs md:text-sm">
+      {/* Skills */}
+      {skills && (
+        <div>
+          <h3 className="text-base font-semibold font-header md:text-base">
+            Skills
+          </h3>
+          <div className="flex gap-3 mt-2">
+            {skills.map((skill) => (
+              <span className="px-3 py-1 border rounded-full md:bg-gray-50 border-gray-200 bg-white">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+      {/* Contact Info */}
+      {contactInfo && (
+        <section>
+          <h3 className="text-base font-semibold font-header md:text-lg">
+            Contact Info
+          </h3>
+
+          <div className="grid mt-2 gap-2 md:grid-cols-2 lg:grid-cols-3 ">
+            {(Object.keys(contactInfo) as Array<keyof typeof contactInfo>).map(
+              (inf, ind) => (
+                <div key={ind}>
+                  <p className="text-gray-500">{inf}</p>
+                  <p className="text-sm">{contactInfo[inf]}</p>
+                </div>
+              )
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* Work Experience */}
+      {workExperience && (
+        <section>
+          <h3 className="text-base font-semibold font-header md:text-lg">
+            Work Experience
+          </h3>
+
+          <div className=" mt-2">
+            {workExperience.map((exp) => (
+              <div className="py-2 border-b border-gray-200 md:border-gray-100">
+                <h2 className="text-sm md:text-base font-medium">
+                  {exp.title}
+                </h2>
+
+                <span className="text-gray-500">
+                  {exp.company} | {exp.start}-{exp.end}
+                </span>
+                <p className="mt-1">{exp.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Education */}
+      {education && (
+        <section>
+          <h3 className="text-base font-semibold font-header md:text-lg">
+            Education
+          </h3>
+
+          <div className=" mt-2">
+            {education.map((edu) => (
+              <div className="py-2 border-b border-gray-200 md:border-gray-100">
+                <h2 className="text-sm md:text-base font-medium">
+                  {edu.degree}
+                </h2>
+
+                <span className="text-gray-500">
+                  {edu.institution} | {edu.startYear}-{edu.endYear}
+                </span>
+                <p className="mt-1">{edu.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+    </div>
+  );
+};

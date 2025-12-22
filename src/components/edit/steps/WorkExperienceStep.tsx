@@ -1,7 +1,6 @@
 import { PlusCircleIcon } from "lucide-react";
 import type { UserData } from "../../../context/context";
 import type { WorkExperience } from "../../../types/resume";
-import { format } from "date-fns";
 
 interface Props {
   userData: UserData;
@@ -9,6 +8,37 @@ interface Props {
 }
 
 export default function WorkExperienceStep({ userData, setUserData }: Props) {
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  const monthToLabel = (value: string) => {
+    // value: "YYYY-MM"
+    if (!value) return "";
+    const [year, month] = value.split("-");
+    return `${monthNames[Number(month) - 1]} ${year}`;
+  };
+
+  const labelToMonth = (label: string) => {
+    // label: "January 2024"
+    if (!label) return "";
+    const [monthName, year] = label.split(" ");
+    const monthIndex = monthNames.indexOf(monthName);
+    if (monthIndex === -1) return "";
+    return `${year}-${String(monthIndex + 1).padStart(2, "0")}`;
+  };
+
   const experience: WorkExperience[] = userData.workExperience ?? [];
 
   const updateField = (
@@ -17,10 +47,7 @@ export default function WorkExperienceStep({ userData, setUserData }: Props) {
     value: string
   ) => {
     const updated = [...experience];
-    updated[index] = {
-      ...updated[index],
-      [field]: value,
-    };
+    updated[index] = { ...updated[index], [field]: value };
 
     setUserData((prev) => ({
       ...prev,
@@ -69,29 +96,19 @@ export default function WorkExperienceStep({ userData, setUserData }: Props) {
           <div className="flex gap-3">
             <input
               type="month"
-              placeholder="Start"
-              value={job.start ? format(new Date(job.start), "yyyy-MM") : ""}
-              onChange={(e) => {
-                const dateStr = e.target.value; // format "YYYY-MM"
-                const formatted = dateStr
-                  ? format(new Date(dateStr + "-01"), "MMMM yyyy")
-                  : "";
-                updateField(index, "start", formatted);
-              }}
+              value={labelToMonth(job.start)}
+              onChange={(e) =>
+                updateField(index, "start", monthToLabel(e.target.value))
+              }
               className="w-1/2 border border-gray-200 px-3 py-2 bg-white rounded-full"
             />
 
             <input
               type="month"
-              placeholder="End"
-              value={job.end ? format(new Date(job.end), "yyyy-MM") : ""}
-              onChange={(e) => {
-                const dateStr = e.target.value;
-                const formatted = dateStr
-                  ? format(new Date(dateStr + "-01"), "MMMM yyyy")
-                  : "";
-                updateField(index, "end", formatted);
-              }}
+              value={labelToMonth(job.end)}
+              onChange={(e) =>
+                updateField(index, "end", monthToLabel(e.target.value))
+              }
               className="w-1/2 border border-gray-200 px-3 py-2 bg-white rounded-full"
             />
           </div>
@@ -100,7 +117,7 @@ export default function WorkExperienceStep({ userData, setUserData }: Props) {
             placeholder="Description"
             value={job.description}
             onChange={(e) => updateField(index, "description", e.target.value)}
-            className="w-full text-xs md:text-sm h-10 bg-white border border-gray-200 rounded-2xl px-3 py-2 min-h-[90px]"
+            className="w-full text-xs md:text-sm bg-white border border-gray-200 rounded-2xl px-3 py-2 min-h-[90px]"
           />
 
           <button
@@ -114,7 +131,7 @@ export default function WorkExperienceStep({ userData, setUserData }: Props) {
 
       <button
         onClick={addExperience}
-        className="px-4 py-2 flex items-center gap-2 bg-neutral-700 text-xs md:text-sm md:text-sm text-white rounded-full"
+        className="px-4 py-2 flex items-center gap-2 bg-neutral-700 text-xs md:text-sm text-white rounded-full"
       >
         <PlusCircleIcon className="w-4" /> Add Work Experience
       </button>
