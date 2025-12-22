@@ -135,7 +135,7 @@ export default function EditUserInfo() {
           </div>
 
           {/* Step content */}
-          <div className="md:min-h-[150px] w-[400px]">
+          <div className="md:min-h-[150px] md:w-[400px]">
             {activeStep === "Basic Info" && (
               <BasicInfoStep userData={userData} setUserData={setUserData} />
             )}
