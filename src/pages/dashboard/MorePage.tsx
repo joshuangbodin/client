@@ -1,66 +1,50 @@
 import { Link, Navigate } from "react-router";
 import { useAuth, type UserData } from "../../context/context";
-
 import { signOut } from "firebase/auth";
 import { auth } from "../../libraries/firebase/firebase";
-import { LogOut, PenIcon, PlusCircle } from "lucide-react";
+import { LogOut, PenIcon, PlusCircle, FileText } from "lucide-react";
 import CompleteProfile from "./components/CompleteProfile";
 
 export default function MorePage() {
   const { user } = useAuth();
 
-  //   logout State
-  const LogOutUser = async () => {
-    await signOut(auth);
-  };
+  const LogOutUser = async () => await signOut(auth);
 
-  if (!user) return;
-  <Navigate to={"/signin"} />;
+  if (!user) return <Navigate to="/signin" />;
 
-  //   getting user info
-  const {
-    avatar,
-    email,
-    name,
-    contactInfo,
-    education,
-    skills,
-    workExperience,
-  } = user;
+  const { avatar, email, name, contactInfo, education, skills, workExperience } = user;
+
   return (
-    <main className="flex w-full gap-3 pt-4 ">
-      <div className="w-full space-y-10 lg:w-3/4">
-        {/* Profile Account info */}
-        <div className="flex flex-col md:flex-row gap-2 justify-between items-start md:items-center">
-          <div className="flex gap-4 items-center">
+    <main className="flex flex-col lg:flex-row w-full gap-6 pt-4 ">
+      {/* Left Column */}
+      <div className="flex-1 space-y-8 lg:max-w-3/4">
+        {/* Profile Header */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          <div className="flex items-center gap-4">
             <img
-              className="rounded-2xl w-22 aspect-square bg-gray-100"
               src={avatar}
+              alt={`${name} avatar`}
+              className="w-24 h-24 md:w-28 md:h-28 rounded-2xl bg-gray-100 object-cover"
             />
-            <div className="text-sm space-y-1 lg:text-base text-neutral-500">
-              <h2 className="font-header text-black  font-semibold text-xl">
-                {name}
-              </h2>
+            <div className="text-sm md:text-base text-neutral-500 space-y-1">
+              <h2 className="text-xl font-semibold text-black font-header">{name}</h2>
               <p>{email}</p>
-              <span className="text-xs py-1 px-2 bg-neutral-200 text-neutral-500 rounded-full">
-                Synced with Google
-              </span>
+              <span className="text-xs px-2 py-1 bg-neutral-200 rounded-full">Synced with Google</span>
             </div>
           </div>
 
-          {/* Edit Button */}
-
-          <div className="flex md:w-1/3 items-center mt-3 justify-between w-full gap-3">
+          {/* Action Buttons */}
+          <div className="flex w-full md:w-1/3 gap-3 mt-3 md:mt-0">
             <Link
-              className=" flex-1 justify-center bg-neutral-800  hover:scale-90 duration-300 transition-all  inline-flex rounded-full space-x-2 p-1 px-2 py-2 md:py-1  md:p-2 text-neutral-200 text-xs md:text-sm items-center"
-              to={"/edit-user-info"}
+              to="/edit-user-info"
+              className="flex-1 flex items-center justify-center gap-2 text-xs md:text-sm text-white bg-neutral-800 rounded-full px-4 py-2 transition-transform hover:scale-95"
             >
-              <PenIcon className="w-3 md:w-5" />
+              <PenIcon className="w-4 md:w-5" />
               <span>Edit Info</span>
             </Link>
             <button
-              className="flex-1 justify-center border cursor-pointer hover:scale-90 duration-300 transition-all inline-flex rounded-full space-x-2 p-1 px-2 py-2 md:py-1  md:p-2  text-xs md:text-sm items-center"
               onClick={LogOutUser}
+              className="flex-1 flex items-center justify-center gap-2 text-xs md:text-sm text-neutral-700 border border-neutral-300 rounded-full px-4 py-2 transition-transform hover:scale-95"
             >
               <LogOut className="w-4 md:w-5" />
               <span>Log Out</span>
@@ -68,36 +52,45 @@ export default function MorePage() {
           </div>
         </div>
 
-        {/* Professional Details are displayed here */}
-        <div className="md:bg-white bg-gray-50 min-h-40 border border-gray-200 h-max rounded-xl p-5">
-          <h1 className="font-header text-lg md:text-xl font-semibold">
-            Personal Professional Details
+        {/* Professional Details */}
+        <div className="bg-gray-50 md:bg-white border border-gray-200 rounded-xl p-6 min-h-[200px]">
+          <h1 className="text-lg md:text-xl font-semibold font-header">
+            Personal & Professional Details
           </h1>
-          <p className="text-sm text-gray-500 mt-2">
-            Your details for resume generation, as well as education and work
-            experience shows here. You can create and manage reusable work
-            profiles, which makes it easier to generate CVs and interviews for
-            multiple Job roles.
+          <p className="mt-2 text-sm text-gray-500">
+            Your details for resume generation, including education, skills, and work experience.
+            Create and manage reusable profiles to simplify CV generation for multiple roles.
           </p>
 
           {education || workExperience || contactInfo || skills ? (
-            <section className="mt-4">
+            <section className="mt-4 space-y-4">
               <ProfessionalDetailsSection {...user} />
+
+              {/* Generate Resume CTA */}
+              <Link
+                to="/generate-resume"
+                className="inline-flex items-center justify-center gap-2 bg-neutral-600 text-white rounded-full px-5 py-3 text-sm md:text-base mt-4 transition-transform hover:scale-95"
+              >
+                <FileText className="w-4 md:w-5" /> Generate Resume
+              </Link>
             </section>
           ) : (
-            <div className="md:w-max">
+            <div className="mt-4 flex flex-col gap-3 md:w-max">
               <Link
-                className="py-2 px-3 bg-neutral-700 items-center gap-2 text-white rounded-full text-xs  flex justify-center  mt-4"
-                to={"/edit-user-info"}
+                to="/edit-user-info"
+                className="flex items-center justify-center gap-2 bg-neutral-700 text-white rounded-full px-4 py-2 text-sm md:text-base"
               >
-                <PlusCircle className="w-5 md:w-7" /> Add Professional Details
+                <PlusCircle className="w-5 md:w-6" /> Add Professional Details
               </Link>
+              <span className="text-gray-500 text-xs md:text-sm">
+                Add your professional details to enable resume generation.
+              </span>
             </div>
           )}
         </div>
       </div>
 
-      {/* Complete Profile display */}
+      {/* Right Column - Complete Profile */}
       <CompleteProfile />
     </main>
   );
@@ -112,58 +105,49 @@ const ProfessionalDetailsSection = ({
   return (
     <div className="space-y-8 text-xs md:text-sm">
       {/* Skills */}
-      {skills && (
+      {skills  && (
         <div>
-          <h3 className="text-base font-semibold font-header md:text-base">
-            Skills
-          </h3>
-          <div className="flex gap-3 mt-2">
-            {skills.map((skill) => (
-              <span className="px-3 py-1 border rounded-full md:bg-gray-50 border-gray-200 bg-white">
+          <h3 className="text-base md:text-lg font-semibold font-header">Skills</h3>
+          <div className="flex flex-wrap gap-2 mt-2">
+            {skills.map((skill, idx) => (
+              <span
+                key={idx}
+                className="px-3 py-1 border border-gray-200 rounded-full bg-white md:bg-gray-50 text-sm"
+              >
                 {skill}
               </span>
             ))}
           </div>
         </div>
       )}
+
       {/* Contact Info */}
       {contactInfo && (
         <section>
-          <h3 className="text-base font-semibold font-header md:text-lg">
-            Contact Info
-          </h3>
-
-          <div className="grid mt-2 gap-2 md:grid-cols-2 lg:grid-cols-3 ">
-            {(Object.keys(contactInfo) as Array<keyof typeof contactInfo>).map(
-              (inf, ind) => (
-                <div key={ind}>
-                  <p className="text-gray-500">{inf}</p>
-                  <p className="text-sm">{contactInfo[inf]}</p>
-                </div>
-              )
-            )}
+          <h3 className="text-base md:text-lg font-semibold font-header">Contact Info</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 mt-2">
+            {(Object.keys(contactInfo) as Array<keyof typeof contactInfo>).map((key, idx) => (
+              <div key={idx}>
+                <p className="text-gray-500">{key}</p>
+                <p>{contactInfo[key]}</p>
+              </div>
+            ))}
           </div>
         </section>
       )}
 
       {/* Work Experience */}
-      {workExperience && (
+      {workExperience  && (
         <section>
-          <h3 className="text-base font-semibold font-header md:text-lg">
-            Work Experience
-          </h3>
-
-          <div className=" mt-2">
-            {workExperience.map((exp) => (
-              <div className="py-2 border-b border-gray-200 md:border-gray-100">
-                <h2 className="text-sm md:text-base font-medium">
-                  {exp.title}
-                </h2>
-
+          <h3 className="text-base md:text-lg font-semibold font-header">Work Experience</h3>
+          <div className="mt-2 space-y-2">
+            {workExperience.map((exp, idx) => (
+              <div key={idx} className="py-2 border-b border-gray-200">
+                <h4 className="text-sm md:text-base font-medium">{exp.title}</h4>
                 <span className="text-gray-500">
                   {exp.company} | {exp.start}-{exp.end}
                 </span>
-                <p className="mt-1">{exp.description}</p>
+                <p className="mt-1 text-sm">{exp.description}</p>
               </div>
             ))}
           </div>
@@ -171,23 +155,17 @@ const ProfessionalDetailsSection = ({
       )}
 
       {/* Education */}
-      {education && (
+      {education  && (
         <section>
-          <h3 className="text-base font-semibold font-header md:text-lg">
-            Education
-          </h3>
-
-          <div className=" mt-2">
-            {education.map((edu) => (
-              <div className="py-2 border-b border-gray-200 md:border-gray-100">
-                <h2 className="text-sm md:text-base font-medium">
-                  {edu.degree}
-                </h2>
-
+          <h3 className="text-base md:text-lg font-semibold font-header">Education</h3>
+          <div className="mt-2 space-y-2">
+            {education.map((edu, idx) => (
+              <div key={idx} className="py-2 border-b border-gray-200">
+                <h4 className="text-sm md:text-base font-medium">{edu.degree}</h4>
                 <span className="text-gray-500">
                   {edu.institution} | {edu.startYear}-{edu.endYear}
                 </span>
-                <p className="mt-1">{edu.description}</p>
+                <p className="mt-1 text-sm">{edu.description}</p>
               </div>
             ))}
           </div>
