@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Navigate } from "react-router";
+import { Navigate, useNavigate } from "react-router";
 import ScreenTop from "../components/ScreenTop";
 import PreviewPanel from "../components/edit/PreviewPanel";
 import { useAuth, type UserData } from "../context/context";
@@ -21,7 +21,8 @@ import {
 import { editUserInfo } from "../libraries/firebase/users";
 
 export default function EditUserInfo() {
-  const { user , setUser } = useAuth();
+  const { user, setUser } = useAuth();
+  const Navigator = useNavigate();
   if (!user) return <Navigate to="/signin" />;
 
   const [userData, setUserData] = useState<UserData>(user);
@@ -48,7 +49,8 @@ export default function EditUserInfo() {
 
     if (success) {
       console.log(data);
-      setUser(userData)
+      setUser(userData);
+      await Navigator(-1);
     } else {
       console.log(data);
     }

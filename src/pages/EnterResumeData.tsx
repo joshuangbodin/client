@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Navigate } from "react-router";
+import { useNavigate } from "react-router";
 import ScreenTop from "../components/ScreenTop";
 import PreviewPanel from "../components/edit/PreviewPanel";
-import { useAuth, type UserData } from "../context/context";
+import { type UserData } from "../context/context";
 import { STEPS, type Step } from "../types/steps";
 
 // Step components
@@ -18,13 +18,21 @@ import {
   Phone,
   User,
 } from "lucide-react";
-import { editUserInfo } from "../libraries/firebase/users";
+import { useResumeState } from "../context/ResumeContext";
 
 export default function EnterUserData() {
-  const { user , setUser } = useAuth();
-  if (!user) return <Navigate to="/signin" />;
+  const Navigate = useNavigate();
+  const { setResume } = useResumeState();
 
-  const [userData, setUserData] = useState<UserData>(user);
+  const [userData, setUserData] = useState<UserData>({
+    name: "",
+    avatar: "",
+    email: "",
+    uid: "",
+    education: [],
+    skills: [],
+    workExperience: [],
+  });
 
   const [activeStep, setActiveStep] = useState<Step>("Basic Info");
 
@@ -42,16 +50,9 @@ export default function EnterUserData() {
     }
   };
 
-  const HandleSubmit = async () => {
-    console.log(userData);
-    const { data, success } = await editUserInfo(userData, user.uid);
-
-    if (success) {
-      console.log(data);
-      setUser(userData)
-    } else {
-      console.log(data);
-    }
+  const HandleSubmit = () => {
+    setResume(userData);
+    Navigate(`/editor/manual`);
   };
 
   const getDisplayIcon = (actStep: Step) => {

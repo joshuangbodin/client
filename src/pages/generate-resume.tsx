@@ -32,7 +32,7 @@ export default function GenerateResume() {
             </p>
           </div>
           <Link
-            to="/use-my-data"
+            to="/preview"
             className="mt-4 w-full inline-flex items-center justify-center gap-2 bg-black text-white py-3 rounded-full text-sm md:text-base font-medium transition-transform hover:scale-95"
           >
             Use My Data <ArrowRight className="w-4 h-4" />
